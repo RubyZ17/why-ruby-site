@@ -1,22 +1,18 @@
-Why Ruby? — Website package
+Why Ruby? 网站发布包说明
 
-FILES
-- index.html: the website homepage
-- assets/: optimized images used by the page
-- .nojekyll: lets GitHub Pages serve the files as-is
+本版本不使用图片、外部字体或第三方脚本，加载更快、更稳定。
 
-FASTEST PUBLISH METHOD: GitHub Pages
-1. Sign in to https://github.com/ and create a new repository named why-ruby-site.
-2. Choose Public only if you are comfortable with the site being visible to anyone. GitHub Pages websites are public.
-3. In the repository, choose Add file -> Upload files. Upload index.html, .nojekyll, and the assets folder (all files inside it).
-4. Click Commit changes.
-5. Open Settings -> Pages. Under Build and deployment, choose Deploy from a branch; select main and /(root); Save.
-6. Wait a few minutes, then visit the URL shown in Settings -> Pages. It usually looks like https://YOUR-USERNAME.github.io/why-ruby-site/
+发布：
+1. 解压 ZIP。
+2. 将 index.html 和 .nojekyll 上传到 GitHub 仓库根目录。
+3. Settings > Pages > Deploy from a branch，选择 main 和 /(root)，保存。
 
-EDIT LATER
-- Open index.html in the repository and click the pencil icon to edit text, then Commit changes.
-- For larger design changes, download the files, edit index.html in VS Code or another editor, and upload the updated files.
-- Image files live in assets/. Keep the filenames the same unless you also update the image paths in index.html.
+修改：
+打开 index.html 编辑；也可以在 GitHub 仓库网页端点击文件后按铅笔图标修改。提交后 Pages 会自动更新。
 
-PRIVACY
-This is a static website. Once published, anyone with the URL can access it. Remove any personal details you do not want public before publishing.
+最后一页现为两个讨论问题：
+1. 理论与细读：如何让哲学思想启发细读，而不把文学文本变成既有理论的例证。
+2. 研究契合度与申请：表达希望在 UC Davis 学习的真诚意愿，并询问 Fall 2027 申请中可进一步发展的方向。
+
+论文公开提醒：
+海明威部分只保留简短研究简介，没有放入全文。公开全文、完整摘要或详细的未发表论证前，建议先核对期刊条款或向编辑确认。

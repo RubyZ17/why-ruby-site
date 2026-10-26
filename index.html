@@ -3,459 +3,245 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Ruochen Zhao — research in modernism, desire, gender, and subjectivity.">
-<meta property="og:title" content="Why Ruby? — A Research Conversation">
-<meta property="og:description" content="Desire, gender, and the making of subjectivity.">
+<meta name="description" content="Ruby Zhao — research in modernism, desire, gender, and subjectivity.">
 <meta name="theme-color" content="#f5f3ec">
-<title>Why Ruby? — A Research Conversation</title>
-<meta name="description" content="Ruochen Zhao — a research conversation on desire, gender, modernism, and the making of subjectivity.">
+<title>Why Ruby? — Research Conversation</title>
 <style>
-  :root{
-    --paper:#f5f3ec; --paper-2:#ebe8de; --ink:#202a25; --muted:#68716a;
-    --green:#334b40; --green-2:#637d6d; --rust:#a14f39; --line:#d5d2c7;
-    --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-    --sans: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth; scroll-snap-type:y proximity; background:var(--paper)}
-  body{margin:0;color:var(--ink);background:var(--paper);font-family:var(--sans);line-height:1.55}
-  a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
-  a:hover{color:var(--rust)}
-  .topbar{position:fixed;z-index:20;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:17px clamp(20px,5vw,72px);background:rgba(245,243,236,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(213,210,199,.75)}
-  .brand{font-family:var(--serif);font-size:1.12rem;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
-  .brand span{color:var(--rust);font-style:italic}
-  .nav{display:flex;gap:clamp(12px,2.4vw,34px);align-items:center;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
-  .nav a{text-decoration:none;color:var(--muted)} .nav a.active,.nav a:hover{color:var(--ink)}
-  .progress{position:fixed;z-index:30;top:0;left:0;height:3px;width:0;background:var(--rust);transition:width .15s ease}
-  main{padding-top:66px}
-  .panel{min-height:calc(100svh - 66px);scroll-snap-align:start;position:relative;padding:clamp(52px,8vh,100px) clamp(22px,9vw,136px);display:flex;flex-direction:column;justify-content:center;overflow:hidden;border-bottom:1px solid var(--line)}
-  .eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--rust);font-weight:700;margin:0 0 20px}
-  h1,h2,h3,p{margin-top:0}
-  h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.035em;line-height:1.04}
-  h1{font-size:clamp(4.4rem,10vw,9.8rem);margin-bottom:22px;max-width:900px}
-  h2{font-size:clamp(2.6rem,5.4vw,5.1rem);max-width:1000px;margin-bottom:28px}
-  h3{font-size:clamp(1.45rem,2.2vw,2rem);margin-bottom:12px}
-  .lede{font-family:var(--serif);font-size:clamp(1.25rem,2.2vw,2rem);line-height:1.35;max-width:760px}
-  .small{font-size:.87rem;color:var(--muted)}
-  .meta{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:34px;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-  .hero{background:var(--paper);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:clamp(25px,5vw,80px);align-items:center}
-  .hero-copy{position:relative;z-index:1}
-  .hero-sub{font-family:var(--serif);font-size:clamp(1.35rem,2.3vw,2.1rem);line-height:1.32;max-width:680px}
-  .hero-art{position:relative;min-height:410px;display:flex;align-items:center;justify-content:center}
-  .orbit{position:absolute;border:1px solid var(--green-2);border-radius:50%;width:min(33vw,420px);aspect-ratio:1;opacity:.72}
-  .orbit.o2{width:min(24vw,310px);border-color:var(--rust);transform:translate(45px,15px)}
-  .orbit.o3{width:min(16vw,205px);border-color:var(--line);transform:translate(-50px,-38px)}
-  .art-words{position:relative;text-align:center;font-family:var(--serif);font-size:clamp(1.55rem,3.2vw,3rem);line-height:1.22;letter-spacing:-.03em}
-  .art-words em{color:var(--rust);font-weight:400}
-  .art-caption{position:absolute;bottom:18px;right:0;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl}
-  .rule{width:76px;height:2px;background:var(--rust);margin:26px 0}
-  .question-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(30px,7vw,110px);align-items:start}
-  .side-note{border-top:1px solid var(--line);padding-top:15px;color:var(--muted);font-size:.83rem;max-width:250px}
-  .big-question{font-family:var(--serif);font-size:clamp(2.1rem,4.7vw,4.5rem);line-height:1.17;letter-spacing:-.035em;max-width:900px}
-  .big-question em{color:var(--rust);font-weight:400}
-  .keywords{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
-  .keyword{border:1px solid var(--line);padding:7px 12px;border-radius:99px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
-  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px}
-  .card{padding:24px 22px 26px;border:1px solid var(--line);background:rgba(255,255,255,.24);min-height:300px;display:flex;flex-direction:column}
-  .card-num{font-family:var(--serif);font-size:2.3rem;color:var(--rust);line-height:1;margin-bottom:26px}
-  .card p{font-size:.9rem;color:#4e5851;margin-bottom:18px}
-  .card .tag{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-  .card .status{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);margin:-2px 0 12px;font-weight:700}
-  .project-list{padding-left:1.05rem;margin:0 0 18px;color:#4e5851;font-size:.82rem}
-  .project-list li{margin:0 0 11px;padding-left:2px}
-  .project-list strong{color:var(--ink);font-weight:600}
-  .thesis-intro{max-width:980px;margin-bottom:26px}
-  .thesis-intro .lede{max-width:920px;margin-bottom:14px}
-  .thesis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px}
-  .thesis-card{border-top:2px solid var(--green-2);padding:18px 18px 16px;background:rgba(255,255,255,.26);min-width:0}
-  .thesis-card .card-num{font-size:1.7rem;margin-bottom:18px}
-  .thesis-card h3{font-size:1.45rem;line-height:1.12;margin-bottom:12px}
-  .thesis-card .prompt{font-family:var(--serif);font-size:1.12rem;line-height:1.38;color:var(--ink);margin-bottom:12px}
-  .thesis-card p:last-child{font-size:.82rem;color:#4e5851;margin-bottom:0}
-  .thesis-note{margin-top:18px;font-size:.76rem;color:var(--muted);font-style:italic}
-  .project-keywords{font-size:.67rem;letter-spacing:.09em;text-transform:uppercase;color:var(--green-2);margin:0 0 7px}
-  .paper-status{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:7px 11px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin:2px 0 22px}
-  .paper-status:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rust);display:inline-block}
-  .hemi-lede{max-width:920px;margin-bottom:26px}
-  .hemi-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(24px,5vw,68px);align-items:start}
-  .hemi-question{font-family:var(--serif);font-size:clamp(1.55rem,2.7vw,2.5rem);line-height:1.28;letter-spacing:-.025em}
-  .hemi-method{border-top:1px solid var(--line);padding-top:15px;color:#4e5851;font-size:.88rem}
-  .reading-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:30px}
-  .reading-card{border-top:2px solid var(--rust);padding:18px 17px 16px;background:rgba(255,255,255,.26);min-width:0}
-  .reading-card .figure{font-family:var(--serif);font-size:1.7rem;color:var(--green);margin-bottom:10px}
-  .reading-card h3{font-size:1.35rem;margin-bottom:10px}
-  .reading-card p{font-size:.82rem;color:#4e5851;margin-bottom:0}
-  .central-claim{display:grid;grid-template-columns:.65fr 1.35fr;gap:22px;align-items:start;background:var(--paper-2);padding:22px 24px;margin-top:24px}
-  .central-claim .label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);font-weight:700}
-  .central-claim p{font-family:var(--serif);font-size:clamp(1.25rem,2vw,1.8rem);line-height:1.35;margin:0}
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,86px);align-items:start}
-  .manifesto{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3.4rem);line-height:1.2;letter-spacing:-.03em}
-  .manifesto em{color:var(--rust);font-weight:400}
-  .principles{border-top:1px solid var(--line)}
-  .principle{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid var(--line)}
-  .principle .n{font-family:var(--serif);color:var(--rust);font-size:1.4rem}
-  .principle strong{display:block;font-size:.93rem;font-weight:600;margin-bottom:3px}
-  .principle p{font-size:.85rem;color:var(--muted);margin:0}
-  .dialogue{background:var(--green);color:#f5f3ec}
-  .dialogue .eyebrow{color:#d8a08c}
-  .dialogue .small{color:#d0d8d0}
-  .dialogue .rule{background:#d8a08c}
-  .dialogue-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);margin-top:12px}
-  .dialogue-item{border-top:1px solid rgba(245,243,236,.3);padding-top:18px}
-  .dialogue-item .label{font-size:.68rem;text-transform:uppercase;letter-spacing:.16em;color:#d8a08c;margin-bottom:14px}
-  .dialogue-item p{font-family:var(--serif);font-size:clamp(1.25rem,2vw,1.8rem);line-height:1.35;margin-bottom:10px}
-  .dialogue-item small{color:#d0d8d0;font-size:.8rem}
-  .fit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:26px}
-  .fit-card{border:1px solid rgba(245,243,236,.28);padding:21px 19px 20px;background:rgba(255,255,255,.035);display:flex;flex-direction:column;min-width:0}
-  .fit-card .fit-num{font-family:var(--serif);font-size:2rem;color:#d8a08c;line-height:1;margin-bottom:18px}
-  .fit-card .label{font-size:.66rem;text-transform:uppercase;letter-spacing:.13em;color:#d8a08c;margin-bottom:11px}
-  .fit-card h3{font-size:1.45rem;line-height:1.13;margin-bottom:13px}
-  .fit-card p{font-size:.83rem;color:#e0e5df;margin-bottom:14px}
-  .fit-card .fit-question{font-family:var(--serif);font-size:1.15rem;line-height:1.36;color:#fff;margin-top:auto;padding-top:15px;border-top:1px solid rgba(245,243,236,.25)}
-  .fit-card small{display:block;font-size:.72rem;line-height:1.5;color:#d0d8d0;margin-top:13px}
-  .fit-card a{color:#f1c4b4}
-  .form-bridge{display:grid;grid-template-columns:.45fr 1.55fr;gap:20px;margin-top:20px;padding:19px 21px;background:rgba(0,0,0,.13);border-left:2px solid #d8a08c}
-  .form-bridge .label{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:#d8a08c;font-weight:700}
-  .form-bridge p{font-family:var(--serif);font-size:1.12rem;line-height:1.4;margin:0;color:#f5f3ec}
-  .dialogue .fit-intro{max-width:880px;color:#e0e5df;font-size:.94rem;margin-top:-4px}
-  .questions{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,7vw,100px);align-items:start}
-  .question-list{counter-reset:q;border-top:1px solid var(--line)}
-  .question-line{counter-increment:q;display:grid;grid-template-columns:40px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:clamp(1.2rem,2vw,1.65rem);line-height:1.3}
-  .question-line:before{content:"0" counter(q);font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;color:var(--rust);padding-top:5px}
-  .closing{background:var(--paper-2)}
-  .closing-inner{max-width:900px}
-  .closing h2{font-size:clamp(3.4rem,8vw,7.4rem)}
-  .closing .signoff{font-family:var(--serif);font-size:1.45rem;color:var(--green)}
-  .footer{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:50px;padding-top:16px;border-top:1px solid #c9c5b9;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
-  .controls{position:fixed;right:clamp(14px,3vw,40px);bottom:24px;z-index:15;display:flex;gap:8px}
-  .controls button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:1rem;cursor:pointer;transition:all .2s}
-  .controls button:hover{background:var(--green);color:var(--paper);border-color:var(--green)}
-  .slidecount{position:fixed;left:clamp(20px,5vw,72px);bottom:28px;z-index:15;font-size:.68rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
-  .source-note{font-size:.72rem;color:var(--muted);margin-top:24px;max-width:700px}
+:root {
+  --paper:#f5f3ec; --paper2:#ebe8de; --ink:#202a25; --muted:#59655d;
+  --green:#334b40; --green2:#637d6d; --rust:#a14f39; --line:#d5d2c7;
+  --serif: "Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --sans: "Avenir Next",Avenir,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.7}
+a{color:inherit;text-underline-offset:4px}
+a:hover{color:var(--rust)}
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px clamp(20px,5vw,76px);background:rgba(245,243,236,.97);border-bottom:1px solid var(--line)}
+.brand{font:1.25rem var(--serif);text-decoration:none;white-space:nowrap}
+.brand span{color:var(--rust);font-style:italic}
+.nav{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:flex-end}
+.nav a{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--rust)}
+main{max-width:1500px;margin:auto}
+section{padding:clamp(58px,8vw,110px) clamp(24px,9vw,140px);border-bottom:1px solid var(--line);scroll-margin-top:70px}
+.eyebrow{margin:0 0 22px;color:var(--rust);font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.035em;line-height:1.12;margin-top:0}
+h1{font-size:clamp(4rem,10vw,8.5rem);margin-bottom:20px}
+h2{font-size:clamp(2.8rem,6vw,5.4rem);margin-bottom:28px}
+h3{font-size:clamp(1.55rem,2.6vw,2.1rem);margin-bottom:12px}
+p{margin-top:0}
+.hero{min-height:72vh;display:flex;align-items:center}
+.hero-inner{max-width:1080px}
+.accent{color:var(--rust);font-style:italic}
+.hero-line{width:88px;height:3px;background:var(--rust);margin:30px 0}
+.lede{max-width:980px;font:clamp(1.5rem,2.8vw,2.25rem)/1.45 var(--serif)}
+.meta{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:30px;color:var(--muted);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.question-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(32px,7vw,100px);align-items:start}
+.big-question{font:clamp(2.25rem,4.6vw,4.3rem)/1.2 var(--serif);letter-spacing:-.035em;max-width:900px}
+.keywords{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0}
+.keyword{border:1px solid var(--line);border-radius:99px;padding:7px 13px;color:var(--green);font-size:.76rem;letter-spacing:.05em;text-transform:uppercase}
+.body-copy{max-width:980px;color:#46534b;font-size:1.05rem}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:34px}
+.project-card{padding:25px 23px;border:1px solid var(--line);background:rgba(255,255,255,.28)}
+.number{color:var(--rust);font:2rem var(--serif);margin-bottom:18px}
+.kicker{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green2);margin-bottom:10px}
+.project-card p{font-size:.98rem;color:#46534b}
+.thesis-title{max-width:1100px}
+.thesis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:34px}
+.thesis-card{padding:24px 22px;border-top:3px solid var(--green2);background:rgba(255,255,255,.3)}
+.thesis-card .prompt{font:1.3rem/1.45 var(--serif);color:var(--ink)}
+.thesis-card p:last-child{font-size:.97rem;color:#46534b;margin-bottom:0}
+.status{display:inline-block;margin:6px 0 24px;border:1px solid var(--line);padding:8px 12px;color:var(--green);font-size:.75rem;letter-spacing:.07em;text-transform:uppercase}
+.hb-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);margin-top:30px}
+.label{font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:12px}
+.hb-question{font:clamp(1.7rem,3vw,2.6rem)/1.35 var(--serif)}
+.case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:32px}
+.case{padding:20px 18px;border-top:2px solid var(--rust);background:rgba(255,255,255,.3)}
+.case h3{font-size:1.5rem}
+.case p{font-size:.96rem;color:#46534b;margin-bottom:0}
+.central-claim{display:grid;grid-template-columns:.65fr 1.35fr;gap:25px;align-items:start;padding:25px 27px;margin-top:28px;background:var(--paper2)}
+.central-claim p{font:clamp(1.35rem,2.3vw,1.9rem)/1.45 var(--serif);margin:0}
+.previous-list{display:grid;grid-template-columns:1fr;gap:0;margin-top:25px;border-top:1px solid var(--line)}
+.previous{padding:22px 0;border-bottom:1px solid var(--line)}
+.previous h3{font-size:1.55rem;margin-bottom:7px}
+.previous .keywords-line{color:var(--green2);font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px}
+.previous p{color:#46534b;margin-bottom:0;font-size:1rem}
+.dialogue{background:var(--green);color:var(--paper)}
+.dialogue .eyebrow,.dialogue .label{color:#e8b5a1}
+.dialogue .intro{max-width:980px;color:#e1e7e1;font-size:1.08rem}
+.fit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:34px}
+.fit-card{padding:24px 22px;border:1px solid rgba(245,243,236,.35)}
+.fit-card h3{font-size:1.65rem}
+.fit-card p{font-size:.98rem;color:#e1e7e1}
+.fit-card .fit-question{border-top:1px solid rgba(245,243,236,.35);padding-top:16px;margin-top:20px;font:1.25rem/1.45 var(--serif);color:white}
+.dialogue a{color:#f1c4b4}
+.form-bridge{margin-top:25px;padding:22px 24px;border-left:3px solid #e8b5a1;background:rgba(0,0,0,.13)}
+.form-bridge p:last-child{font:1.25rem/1.5 var(--serif);margin:0}
+.questions{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(30px,7vw,100px);align-items:start}
+.question-list{border-top:1px solid var(--line)}
+.question{display:grid;grid-template-columns:42px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);font:clamp(1.25rem,2.2vw,1.7rem)/1.45 var(--serif)}
+.question span{font:700 .8rem var(--sans);color:var(--rust);padding-top:8px}
 
-  .hero-art{position:relative;min-height:460px;display:flex;align-items:center;justify-content:center}
-  .portrait-stack{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
-  .portrait-frame{width:min(30vw,420px);aspect-ratio:4/5;border:12px solid rgba(255,255,255,.84);box-shadow:0 24px 48px rgba(32,42,37,.18);background:#ddd;overflow:hidden}
-  .portrait-frame img{width:100%;height:100%;object-fit:cover;display:block}
-  .portrait-note{max-width:240px;align-self:flex-start;margin-left:-20px;background:rgba(245,243,236,.92);border:1px solid var(--line);padding:12px 14px;font-size:.77rem;color:#4e5851;line-height:1.5}
-  .portrait-note strong{display:block;color:var(--ink);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
-  .flourish{font-family:var(--serif);font-size:1.2rem;letter-spacing:.2em;color:var(--rust);opacity:.82}
-  .thesis-visuals{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin:8px 0 24px}
-  .visual-card{background:rgba(255,255,255,.34);border:1px solid var(--line);padding:14px}
-  .visual-card img{width:100%;display:block;object-fit:cover;max-height:320px;background:#f0ede4}
-  .visual-card figcaption{font-size:.74rem;color:var(--muted);margin-top:10px;line-height:1.45}
-  .visual-card .label{display:block;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--rust);margin-bottom:8px}
-  .ornament-line{display:flex;align-items:center;gap:12px;margin:18px 0 8px;color:var(--rust)}
-  .ornament-line:before,.ornament-line:after{content:"";height:1px;background:var(--line);flex:1}
-  .ornament-line span{font-family:var(--serif);font-size:1.1rem}
-  .hemi-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:10px 0 26px}
-  .hemi-gallery figure{margin:0;background:rgba(255,255,255,.32);border:1px solid var(--line);padding:12px}
-  .hemi-gallery img{display:block;width:100%;height:240px;object-fit:cover}
-  .hemi-gallery figcaption{font-size:.74rem;color:var(--muted);margin-top:9px;line-height:1.45}
-  .section-credit{font-size:.71rem;color:var(--muted);margin-top:14px;max-width:820px}
-  .section-credit em{font-style:italic}
-  @media(max-width:850px){
-    .hero{grid-template-columns:1fr}.hero-art{min-height:320px;order:-1}.portrait-frame{width:min(78vw,420px)}.portrait-note{max-width:280px;margin-left:0}.thesis-visuals,.hemi-gallery{grid-template-columns:1fr}.orbit{width:220px}.orbit.o2{width:170px}.orbit.o3{width:115px}.art-caption{right:4%}
-    .cards,.thesis-grid,.reading-grid,.fit-grid{grid-template-columns:1fr}.form-bridge{grid-template-columns:1fr}.card{min-height:0}.question-layout,.two-col,.questions,.hemi-layout,.central-claim{grid-template-columns:1fr}.dialogue-grid{grid-template-columns:1fr}.fit-grid{grid-template-columns:1fr}.form-bridge{grid-template-columns:1fr}
-    .panel{padding-top:70px;padding-bottom:70px}.nav{gap:12px}.nav a{font-size:.65rem}.brand{font-size:1rem}
-    .slidecount{bottom:15px}.controls{bottom:10px}.footer{flex-direction:column;align-items:flex-start}
-  }
-  @media(max-width:520px){.nav a:nth-child(2),.nav a:nth-child(3),.nav a:nth-child(4),.nav a:nth-child(5){display:none}.topbar{padding:15px 18px}.panel{padding-left:22px;padding-right:22px}.hero-art{min-height:220px}h1{font-size:4.2rem}.side-note{max-width:none}}
-  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-  @media print{
-    .topbar,.controls,.slidecount,.progress{display:none!important}main{padding:0}.panel{min-height:0;page-break-after:always;padding:35px 42px;border:0}.hero{display:block}.hero-art{display:none}.cards,.thesis-grid,.reading-grid,.fit-grid{grid-template-columns:1fr}.form-bridge{grid-template-columns:1fr}.central-claim{grid-template-columns:1fr}.dialogue{background:white;color:black}.dialogue .small,.dialogue-item small{color:#444}.dialogue-item{border-color:#999}.dialogue .eyebrow,.dialogue-item .label{color:#8a3e2a}
-  }
+.final-intro{max-width:980px;font:clamp(1.3rem,2.2vw,1.8rem)/1.55 var(--serif);color:#46534b;margin-bottom:34px}
+.final-question-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:25px}
+.final-question-card{padding:27px 25px;border:1px solid var(--line);border-top:4px solid var(--green2);background:rgba(255,255,255,.36)}
+.final-question-card-alt{border-top-color:var(--rust)}
+.final-question-card .label{margin-bottom:15px}
+.final-question-card h3{font-size:clamp(1.55rem,2.3vw,2rem)}
+.final-question{font:clamp(1.25rem,2vw,1.65rem)/1.5 var(--serif);color:var(--ink);margin:20px 0}
+.final-note{padding-top:15px;border-top:1px solid var(--line);font-size:.92rem;color:var(--muted);margin-bottom:0}
+.final-signoff{margin-top:30px;font:italic 1.1rem/1.6 var(--serif);color:var(--muted)}
+
+.closing{background:var(--paper2)}
+.footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:42px;padding-top:18px;border-top:1px solid #c9c5b9;color:var(--muted);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:900px){
+  .question-layout,.hb-grid,.questions{grid-template-columns:1fr}
+  .project-grid,.thesis-grid,.case-grid,.fit-grid,.final-question-grid{grid-template-columns:1fr}
+  .hero{min-height:unset}
+  section{padding-top:65px;padding-bottom:65px}
+}
+@media(max-width:600px){
+  body{font-size:17px}
+  .topbar{align-items:flex-start;flex-direction:column}
+  .nav{justify-content:flex-start;gap:10px 16px}
+  .nav a{font-size:.7rem}
+  h1{font-size:4.2rem}
+  section{padding-left:22px;padding-right:22px}
+  .central-claim{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{
+  .topbar{position:static}
+  section{padding:30px;break-inside:avoid;min-height:0}
+  .dialogue{background:white;color:black}
+  .dialogue p,.fit-card p{color:#333}
+}
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
 <header class="topbar">
   <a class="brand" href="#home">R<span>/</span>Z</a>
   <nav class="nav" aria-label="Main navigation">
-    <a href="#question">Question</a><a href="#research">Research</a><a href="#thesis">Thesis</a><a href="#hemingway">Hemingway</a><a href="#comparison">Method</a><a href="#dialogue">Dialogue</a><a href="#questions">Questions</a>
+    <a href="#question">Core question</a>
+    <a href="#thesis">Wilde &amp; Woolf</a>
+    <a href="#hemingway">Hemingway</a>
+    <a href="#projects">Other projects</a>
+    <a href="#dialogue">Research fit</a>
+    <a href="#questions">Discussion</a>
   </nav>
 </header>
 <main>
-  <section class="panel hero" id="home" data-title="Opening">
-    <div class="hero-copy">
-      <p class="eyebrow">A research conversation · October 2026</p>
-      <h1>Why<br><em style="color:var(--rust);font-weight:400">Ruby?</em></h1>
-      <p class="hero-sub">Desire, gender, and the making of subjectivity.</p>
-      <div class="rule"></div>
-      <p class="small" style="max-width:490px">Ruochen Zhao · English major · Comparative literature research</p>
-      <div class="meta"><span>Conversation with Michael J. Subialka</span><span>UC Davis · Comparative Literature</span></div>
-    </div>
-    <div class="hero-art" aria-label="Portrait of Ruochen Zhao at the lakeside">
-      <div class="orbit"></div><div class="orbit o2"></div><div class="orbit o3"></div>
-      <div class="portrait-stack">
-        <div class="portrait-frame"><img src="assets/ruby-photo.webp" alt="Ruochen Zhao seated by a blue lake" loading="eager"></div>
-        <div class="portrait-note"><strong>Ruby</strong>A quieter self-portrait for the introduction page — literature, water, and the reflective mood behind these questions.<div class="flourish">❦</div></div>
-      </div>
-      <div class="art-caption">A research life shaped by literature, language, and comparison</div>
-    </div>
-  </section>
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <p class="eyebrow">A Research Conversation · October 2026</p>
+    <h1>Why <span class="accent">Ruby?</span></h1>
+    <p class="lede">Desire, gender, and the making of subjectivity.</p>
+    <div class="hero-line"></div>
+    <p class="body-copy">Ruochen Zhao · English Major · Comparative Literature Research</p>
+    <div class="meta"><span>Conversation with Michael J. Subialka</span><span>UC Davis · Comparative Literature</span></div>
+  </div>
+</section>
 
-  <section class="panel" id="question" data-title="The question">
-    <p class="eyebrow">01 / A recurring question</p>
-    <div class="question-layout">
-      <div>
-        <h2>The question<br>that keeps<br>returning.</h2>
-        <div class="rule"></div>
-        <p class="side-note">I am interested in what literature does—not only what it represents.</p>
-      </div>
-      <div>
-        <p class="big-question">How does <em>desire</em> shape the ways subjects understand themselves, relate to others, and inhabit their worlds?</p>
-        <div class="keywords"><span class="keyword">Desire</span><span class="keyword">Gender</span><span class="keyword">Modernism</span><span class="keyword">Subjectivity</span><span class="keyword">Embodiment</span></div>
-        <p style="max-width:650px;margin-top:32px;color:#4e5851">Across my projects, I ask how desire develops through relationships with others and the world—and how these relationships open new possibilities for agency while remaining shaped by gender norms, bodily experience, and historical conditions. Literary form is one way I investigate these tensions.</p>
-      </div>
+<section id="question">
+  <p class="eyebrow">01 / A recurring question</p>
+  <div class="question-layout">
+    <div><h2>The question<br>that keeps returning.</h2><p class="body-copy">I am interested in what literature does—not only what it represents.</p></div>
+    <div>
+      <p class="big-question">How does <em class="accent">desire</em> shape the ways subjects understand themselves, relate to others, and inhabit their worlds?</p>
+      <div class="keywords"><span class="keyword">Desire</span><span class="keyword">Gender</span><span class="keyword">Modernism</span><span class="keyword">Subjectivity</span><span class="keyword">Embodiment</span></div>
+      <p class="body-copy">I approach desire not simply as an inner force that expresses an already formed self, but as a relation through which subjects come to understand and potentially remake themselves. These processes may open new possibilities for agency while remaining shaped by bodily experience, gender norms, and historical conditions.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="panel" id="research" data-title="Research">
-    <p class="eyebrow">02 / Research constellations</p>
-    <h2>Research projects and future directions.</h2>
-    <div class="cards">
-      <article class="card">
-        <div class="card-num">01</div>
-        <h3>Wilde &amp; Woolf</h3>
-        <div class="status">Undergraduate thesis · in development</div>
-        <p><em>When the Body Refuses a Name: Desire, Excess, and Becoming in <span style="white-space:nowrap">Salomé</span> and <span style="white-space:nowrap">Orlando</span></em></p>
-        <p>I plan to compare Wilde’s one-act play, often discussed in relation to Symbolism and Decadence, with Woolf’s experimental, fantasy-inflected mock-biography. I want to explore how their different forms illuminate desire, gender, and selfhood across the turn of the twentieth century.</p>
-        <p><a href="#thesis">Explore the proposed thesis →</a></p>
-        <div class="tag">Form · Desire · Modernism</div>
-      </article>
-      <article class="card">
-        <div class="card-num">02</div>
-        <h3>Hemingway</h3>
-        <p><em>The Sovereign Sip: Alcohol, Embodied Agency, and Gender Performativity in Hemingway’s Early Fiction</em></p>
-        <p>I examined alcohol not only as a cultural symbol but as a material practice that temporarily reshapes bodily experience and agency within gendered social relations.</p>
-        <p><a href="#hemingway">Explore the completed study →</a></p>
-        <div class="tag">New materialism · Gender · Agency</div>
-      </article>
-      <article class="card">
-        <div class="card-num">03</div>
-        <h3>Selected earlier projects</h3>
-        <ul class="project-list">
-          <li><strong>D. H. Lawrence, <em>Lady Chatterley’s Lover</em></strong><div class="project-keywords">Industrial modernity · Pastoral life · Sexual autonomy</div>I examined how Connie’s pursuit of sexual autonomy challenged industrial modernity while remaining constrained by class and economic dependence.</li>
-          <li><strong>Pramoedya Ananta Toer, <em>The Buru Quartet</em></strong><div class="project-keywords">Cultural geography · Space · Political agency</div>I explored how individuals negotiated identity and enacted political agency amid the broader historical forces of colonialism and modernity.</li>
-          <li><strong>Euripides’ <em>Medea</em> and Cao Yu’s <em>Thunderstorm</em></strong><div class="project-keywords">Motherhood · Body politics · Space</div>I compared Medea and Fanyi to examine how resistance to patriarchal motherhood was shaped and limited by bodily discipline and spatial constraints.</li>
-        </ul>
-        <div class="tag">Comparative literature · Body · Power</div>
-      </article>
-    </div>
-    <p class="source-note">The Wilde–Woolf project is a proposed undergraduate thesis; the Hemingway article is completed and undergoing minor revisions; the three earlier projects are completed studies.</p>
-  </section>
+<section id="thesis">
+  <p class="eyebrow">02 / Proposed undergraduate thesis</p>
+  <div class="thesis-title">
+    <h2>When the Body<br><span class="accent">Refuses a Name.</span></h2>
+    <p class="lede">Desire, Excess, and Becoming in Wilde’s <em>Salomé</em> and Woolf’s <em>Orlando</em></p>
+    <p class="body-copy">I plan to compare Wilde’s one-act play, often discussed in relation to Symbolism and Decadence, with Woolf’s experimental, fantasy-inflected mock-biography. I am interested in how desire shapes gendered subjectivity, how each protagonist understands the world through desire, and how changing historical conditions reshape the possibilities of becoming.</p>
+  </div>
+  <div class="thesis-grid">
+    <article class="thesis-card"><div class="number">01</div><h3>Desire &amp; subjectivity</h3><p class="prompt">How does desire shape the protagonists’ understanding of themselves and others?</p><p>Salomé’s intense desire for Jokanaan raises questions about looking, possession, agency, and violence. In <em>Orlando</em>, the desire to love and to live unfolds as the protagonist’s gender and historical world change.</p></article>
+    <article class="thesis-card"><div class="number">02</div><h3>Gender &amp; becoming</h3><p class="prompt">Can a subject become someone different without escaping the norms that shape them?</p><p>Rather than treating identity as a fixed essence, I examine how bodily change, social recognition, and relationships complicate the process of becoming a subject.</p></article>
+    <article class="thesis-card"><div class="number">03</div><h3>Form &amp; historical time</h3><p class="prompt">What becomes visible when a play and a fantasy-inflected mock-biography are read together?</p><p>The contrast between Wilde’s theatrical intensity and Woolf’s shifting historical perspective helps me ask how different forms represent desire, gender conventions, and changing ideas of selfhood.</p></article>
+  </div>
+  <p class="small" style="margin-top:20px;color:var(--muted)">This is a proposed undergraduate thesis, not a completed argument. I do not treat <em>Salomé</em> as a modernist work; rather, I explore how its fin-de-siècle aesthetics resonate with and differ from Woolf’s modernist concerns.</p>
+</section>
 
-  <section class="panel" id="thesis" data-title="Thesis">
-    <p class="eyebrow">03 / Proposed undergraduate thesis</p>
-    <div class="thesis-intro">
-      <h2>When the Body<br><em style="color:var(--rust);font-weight:400">Refuses a Name.</em></h2>
-      <p class="lede">Desire, Excess, and Becoming in Wilde’s <em>Salomé</em> and Woolf’s <em>Orlando</em></p>
-      <p style="max-width:920px;color:#4e5851">I plan to compare Wilde’s one-act play, often discussed in relation to Symbolism and Decadence, with Woolf’s experimental, fantasy-inflected mock-biography. I am interested in how literary form shapes desire and gendered subjectivity, and how the two works explore the possibilities and limits of a changing self.</p>
-      <div class="ornament-line"><span>❦</span></div>
-    </div>
-    <div class="thesis-visuals">
-      <figure class="visual-card">
-        <span class="label">For <em>Salomé</em></span>
-        <img src="assets/salome-beardsley.webp" alt="Aubrey Beardsley, The Climax, illustration for Salome" loading="lazy">
-        <figcaption><em>Aubrey Beardsley, The Climax</em> (1894) — the iconic black-and-white visual world that continues to shape how <em>Salomé</em> is imagined.</figcaption>
-      </figure>
-      <figure class="visual-card">
-        <span class="label">For <em>Orlando</em></span>
-        <img src="assets/virginia-woolf.webp" alt="Virginia Woolf portrait, 1928" loading="lazy">
-        <figcaption><em>Virginia Woolf</em> (1928 portrait) — included here as a visual companion to <em>Orlando</em> and its modernist experiment with selfhood, time, and gender.</figcaption>
-      </figure>
-    </div>
-    <div class="thesis-grid">
-      <article class="thesis-card">
-        <div class="card-num">01</div>
-        <h3>Form &amp; subjectivity</h3>
-        <p class="prompt">How do the two works’ distinct literary forms make desire and gendered subjectivity legible in different ways?</p>
-        <p>In <em>Salomé</em>, dialogue, repetition, gaze, and theatrical spectacle concentrate desire in embodied action. In <em>Orlando</em>, fantasy, biographical parody, and narrative play unsettle the idea of a coherent self.</p>
-      </article>
-      <article class="thesis-card">
-        <div class="card-num">02</div>
-        <h3>Desire &amp; world</h3>
-        <p class="prompt">How does desire shape the protagonists’ ways of perceiving and inhabiting their worlds?</p>
-        <p>Salomé’s desire for Jokanaan becomes entangled with looking, bodily fixation, possession, and violence. In <em>Orlando</em>, longing for love, life, and creative fulfillment unfolds across changing gendered and social conditions.</p>
-      </article>
-      <article class="thesis-card">
-        <div class="card-num">03</div>
-        <h3>Historical time &amp; modernism</h3>
-        <p class="prompt">How does <em>Orlando</em> use historical time to represent changing gender conventions, social conduct, and ideas of selfhood—and what emerges when it is read alongside Wilde’s fin-de-siècle drama?</p>
-        <p>Rather than classifying <em>Salomé</em> as a modernist work, I want to examine how its fin-de-siècle aesthetics resonate with, and differ from, questions Woolf explores through modernist form.</p>
-      </article>
-    </div>
-    <p class="section-credit">Visual references: Aubrey Beardsley, <em>The Climax</em> (1894), and a public-domain 1928 portrait of Virginia Woolf.</p>
-    <p class="thesis-note">An emerging undergraduate thesis project, not a completed argument.</p>
-  </section>
+<section id="hemingway">
+  <p class="eyebrow">03 / Completed research · Hemingway</p>
+  <h2>The <span class="accent">Sovereign Sip.</span></h2>
+  <p class="lede">Alcohol, Embodied Agency, and Gender Performativity in Hemingway’s Early Fiction</p>
+  <div class="status">Article under minor revision · <em>The Hemingway Review</em></div>
+  <p class="body-copy">This article examines alcohol not only as a cultural symbol, but as a material participant in literary scenes. I develop the concept of the “Sovereign Sip” to describe a bounded drinking episode in which alcohol’s material effects temporarily reshape embodied agency within gendered social relations.</p>
+  <div class="hb-grid">
+    <div><p class="label">Research question</p><p class="hb-question">How does drinking change what a body can do—and what it cannot escape?</p></div>
+    <div><p class="label">Theoretical approach</p><p class="body-copy">Through close reading, I brought materialist approaches to matter into conversation with Judith Butler’s theory of gender performativity and Foucault’s concept of heterotopia. I used these frameworks to consider how bodily experience, material objects, and social power interact without treating alcohol as a force that determines human action.</p></div>
+  </div>
+  <div class="case-grid">
+    <article class="case"><div class="kicker">Textual focus 01</div><h3><em>The Three-Day Blow</em></h3><p>Drinking and masculine self-understanding: the temporary management of vulnerability and social expectations.</p></article>
+    <article class="case"><div class="kicker">Textual focus 02</div><h3><em>The Sun Also Rises</em></h3><p>Public drinking, gender performance, and the limits of agency within intimate and social relations.</p></article>
+    <article class="case"><div class="kicker">Textual focus 03</div><h3>“Hills Like White Elephants”</h3><p>Taste and embodied judgment as ways of perceiving a relationship beyond the language used to explain it.</p></article>
+  </div>
+  <div class="central-claim"><div><p class="label">Central concern</p><h3>Agency without emancipation</h3></div><p>The project considers how drinking may open temporary possibilities for embodied agency without resolving the bodily limits and social relations that constrain it.</p></div>
+  <p class="small" style="margin-top:18px;color:var(--muted)">This public overview is a concise description of the project, not the manuscript or a reproduction of its full argument.</p>
+</section>
 
-  <section class="panel" id="hemingway" data-title="Hemingway">
-    <p class="eyebrow">04 / Completed research · Hemingway</p>
-    <div class="hemi-lede">
-      <h2>The <em style="color:var(--rust);font-weight:400">Sovereign Sip:</em></h2>
-      <p class="lede">Alcohol, Embodied Agency and Gender Performativity in Hemingway’s Early Fiction</p>
-      <div class="paper-status">Sole-authored article · Minor revisions in progress · <em>The Hemingway Review</em></div>
-      <p style="max-width:920px;color:#4e5851">This article asks what alcohol does in a literary scene, rather than only what it signifies. I develop the concept of the “Sovereign Sip” to describe a bounded drinking episode in which alcohol materially alters bodily experience and temporarily redistributes agency within a social relation.</p>
-      <div class="ornament-line"><span>✦</span></div>
-    </div>
-    <div class="hemi-gallery">
-      <figure>
-        <img src="assets/wine-still-life-1.webp" alt="Raphaelle Peale still life with wine glass" loading="lazy">
-        <figcaption><em>Raphaelle Peale, Still Life with Wine Glass</em> (1818) — a quiet still life that echoes the article’s attention to material objects and embodied experience.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/wine-still-life-2.webp" alt="Pieter Claesz still life with wine glass" loading="lazy">
-        <figcaption><em>Pieter Claesz, Stoneware Jug, Wine Glass, Herring and Bread</em> (1642) — a second still life to extend the atmosphere of drinking scenes and material culture.</figcaption>
-      </figure>
-    </div>
-    <div class="hemi-layout">
-      <div>
-        <p class="eyebrow" style="margin-bottom:12px">Research question</p>
-        <p class="hemi-question">How does alcohol participate in shaping bodily experience, gendered conduct, and social relations?</p>
-      </div>
-      <div>
-        <p class="eyebrow" style="margin-bottom:12px">Theoretical approach</p>
-        <p class="hemi-method">Through close reading, I brought new materialist approaches to matter into conversation with Judith Butler’s theory of gender performativity and Foucault’s concept of heterotopia, while drawing on scholarship on intoxication and embodied experience. These frameworks helped me examine alcohol as a material participant in social relations without treating it as an independent force that determines human action.</p>
-      </div>
-    </div>
-    <div class="reading-grid">
-      <article class="reading-card">
-        <div class="figure">01</div>
-        <h3>Jake Barnes</h3>
-        <p>Jake’s intoxication exposes the fragility of masculine self-possession. Alcohol offers a temporary way to manage emotional vulnerability, but it cannot repair his bodily injury or resolve his relationship with Brett.</p>
-      </article>
-      <article class="reading-card">
-        <div class="figure">02</div>
-        <h3>Brett Ashley</h3>
-        <p>Brett’s public drinking unsettles male-coded social spaces and gender conventions, yet her agency remains vulnerable to renewed demands for conventional femininity.</p>
-      </article>
-      <article class="reading-card">
-        <div class="figure">03</div>
-        <h3>Jig</h3>
-        <p>Jig’s comparison of Anís del Toro to absinthe turns taste into a form of embodied judgment that exceeds her partner’s rationalizing language, without resolving the inequality of their relationship.</p>
-      </article>
-    </div>
-    <div class="central-claim">
-      <div class="label">Central claim<br>Agency without emancipation</div>
-      <p>The “Sovereign Sip” names neither simple intoxication nor lasting freedom. Alcohol can open temporary possibilities for embodied agency, but those possibilities remain constrained by bodily limits and social power.</p>
-    </div>
-    <p class="source-note">The concept traces a bounded event: how embodied agency emerges, what it makes possible, and where it reaches its limits.</p>
-    <p class="section-credit">Visual references: Raphaelle Peale, <em>Still Life with Wine Glass</em> (1818), and Pieter Claesz, <em>Stoneware Jug, Wine Glass, Herring and Bread</em> (1642).</p>
-  </section>
+<section id="projects">
+  <p class="eyebrow">04 / Selected earlier projects</p>
+  <h2>Other questions I have explored.</h2>
+  <div class="previous-list">
+    <article class="previous"><h3>D. H. Lawrence, <em>Lady Chatterley’s Lover</em></h3><p class="keywords-line">Industrial modernity · Pastoral life · Sexual autonomy</p><p>I examined how Connie’s pursuit of sexual autonomy challenged industrial modernity while remaining constrained by class and economic dependence.</p></article>
+    <article class="previous"><h3>Pramoedya Ananta Toer, <em>The Buru Quartet</em></h3><p class="keywords-line">Cultural geography · Space · Political agency</p><p>I explored how individuals negotiated identity and enacted political agency amid broader historical and political transformations.</p></article>
+    <article class="previous"><h3>Euripides’ <em>Medea</em> and Cao Yu’s <em>Thunderstorm</em></h3><p class="keywords-line">Motherhood · Body politics · Space</p><p>I compared Medea and Fanyi to examine how resistance to patriarchal motherhood was shaped and limited by bodily discipline and spatial constraints.</p></article>
+  </div>
+</section>
 
-  <section class="panel" id="comparison" data-title="Method">
-    <p class="eyebrow">05 / Why comparison?</p>
-    <div class="two-col">
-      <div>
-        <h2>Comparison should change the question—not simply place texts side by side.</h2>
-        <div class="rule"></div>
-        <p class="small" style="max-width:410px">My training in English and French has encouraged me to think across languages, genres, and intellectual traditions.</p>
-      </div>
-      <div class="principles">
-        <div class="principle"><span class="n">01</span><div><strong>Across genres</strong><p>What becomes possible in drama that a novel makes possible differently? How does form shape the problem it appears to represent?</p></div></div>
-        <div class="principle"><span class="n">02</span><div><strong>Across traditions</strong><p>What changes when a text is read alongside another literary or philosophical tradition, rather than within a single national canon?</p></div></div>
-        <div class="principle"><span class="n">03</span><div><strong>Across methods</strong><p>How can close reading and theory remain accountable to textual detail while opening onto broader questions about subjectivity and power?</p></div></div>
-      </div>
-    </div>
-  </section>
+<section class="dialogue" id="dialogue">
+  <p class="eyebrow">05 / Where our questions meet</p>
+  <h2>Desire, gender,<br>and modernist subjectivity.</h2>
+  <p class="intro">My primary interests lie in modernism, gender, and desire. I am interested in desire not simply as an inner force that expresses an already formed self, but as a relation through which subjects come to understand themselves, others, and the world. I see several possible points of contact with your work.</p>
+  <div class="fit-grid">
+    <article class="fit-card"><div class="label">Direct connection</div><h3>Aestheticism, desire &amp; gender</h3><p>Your work on aestheticism, decadence, and gendered performance speaks to my proposed thesis on Wilde and Woolf. I am interested in how desire can create room for action while remaining entangled in the norms through which a subject is seen and recognized.</p><p class="fit-question">When does desire open new possibilities—and when does it reproduce the power relations it seeks to challenge?</p><p><small>Point of reference: <a href="https://journals.gold.ac.uk/index.php/volupte/article/view/1336/1459" target="_blank" rel="noreferrer"><em>Acting Aestheticism, Performing Decadence</em></a>.</small></p></article>
+    <article class="fit-card"><div class="label">Long-term connection</div><h3>Modernism &amp; subjectivity</h3><p>Your work on modernist idealism and your project on Eliot and d’Annunzio invite me to think about how literature reimagines experience, selfhood, and the relation between subject and world. My work on Woolf and Hemingway approaches related questions through desire, embodiment, and social conditions.</p><p class="fit-question">How do modernist texts represent a self that changes through desire and historical experience?</p><p><small>Point of reference: <a href="https://escholarship.org/uc/item/53r9f220" target="_blank" rel="noreferrer"><em>Modernist Idealism</em></a>.</small></p></article>
+    <article class="fit-card"><div class="label">A question I bring</div><h3>Desire as a relational process</h3><p>Across my projects, I am increasingly interested in desire as something that develops through a subject’s relations with others and the world—not simply as an expression of a fully formed self.</p><p class="fit-question">Can desire transform subjectivity without escaping the social relations that shape it?</p></article>
+  </div>
+  <div class="form-bridge"><p class="label">Where form enters</p><p>I see literary form as a way to investigate these questions, rather than an end in itself. Theatrical spectacle, experimental biography, and modernist narration make desire and changing subjectivity legible in different ways.</p></div>
+</section>
 
-  <section class="panel dialogue" id="dialogue" data-title="Dialogue">
-    <p class="eyebrow">06 / Where our questions meet</p>
-    <h2>Desire, gender,<br>and modernist subjectivity.</h2>
-    <p class="fit-intro">My primary interests lie in modernism, gender, and desire. I am interested in desire not simply as an inner force that expresses an already formed self, but as a relation through which subjects come to understand themselves, others, and the world. Your work offers several points of contact for developing these questions.</p>
-    <div class="fit-grid">
-      <article class="fit-card">
-        <div class="fit-num">01</div>
-        <div class="label">Direct research connection</div>
-        <h3>Aestheticism, desire &amp; gender</h3>
-        <p>Your work on aestheticism, decadence, and gendered performance speaks directly to my proposed thesis on Wilde’s <em>Salomé</em> and Woolf’s <em>Orlando</em>. I am interested in how desire can create room for action while remaining entangled in the norms through which a subject is seen and recognized.</p>
-        <p class="fit-question">When does desire open new possibilities for a subject—and when does it reproduce the power relations it seeks to challenge?</p>
-        <small>Point of reference: <a href="https://journals.gold.ac.uk/index.php/volupte/article/view/1336/1459" target="_blank" rel="noreferrer"><em>Acting Aestheticism, Performing Decadence</em> (2019)</a></small>
-      </article>
-      <article class="fit-card">
-        <div class="fit-num">02</div>
-        <div class="label">Long-term research connection</div>
-        <h3>Modernism &amp; subjectivity</h3>
-        <p>Your work on modernist idealism and your current project on Eliot and d’Annunzio invite me to think about how literature reimagines experience, selfhood, and the relationship between subject and world. My work on Woolf and Hemingway approaches related questions through desire, embodiment, and changing social conditions.</p>
-        <p class="fit-question">How do modernist texts represent a self that changes through desire, embodied experience, and historical circumstances?</p>
-        <small>Points of reference: <a href="https://escholarship.org/uc/item/53r9f220" target="_blank" rel="noreferrer"><em>Modernist Idealism</em></a> · <a href="https://www.michaelsubialka.com/publications" target="_blank" rel="noreferrer"><em>Mindful Modernism</em> project and publications</a></small>
-      </article>
-      <article class="fit-card">
-        <div class="fit-num">03</div>
-        <div class="label">A question I bring</div>
-        <h3>Desire as a relational process</h3>
-        <p>Across my projects, I am increasingly interested in desire as something that develops through a subject’s relations with others and the world—not simply as an expression of a fully formed self. Such relations may open new possibilities for agency while also reproducing existing constraints.</p>
-        <p class="fit-question">Can desire transform subjectivity without escaping the social relations and norms that shape it?</p>
-        <small>This question connects my work on <em>Salomé</em>, <em>Orlando</em>, and Hemingway, while remaining open to further development.</small>
-      </article>
-    </div>
-    <div class="form-bridge">
-      <div class="label">Where form enters</div>
-      <p>I see literary form as a way to investigate these questions, rather than an end in itself. Wilde’s theatrical spectacle and Woolf’s experimental mock-biography, for example, make desire and changing subjectivity legible in different ways. Comparative reading can then connect these formal choices to broader questions of gender, history, and modernity.</p>
-    </div>
-    <p class="source-note" style="color:#d0d8d0">My aim is not to assume that our projects are identical, but to explore how my questions about desire and gender might enter into conversation with your work on decadence, modernism, and literary philosophy. See also: <a href="https://www.michaelsubialka.com/publications" target="_blank" rel="noreferrer">Publications</a> · <a href="https://www.michaelsubialka.com/talks" target="_blank" rel="noreferrer">Talks</a></p>
-  </section>
+<section id="questions">
+  <p class="eyebrow">06 / Questions for further conversation</p>
+  <h2>Questions I Would<br><span class="accent">Value Your Thoughts On.</span></h2>
+  <p class="final-intro">I am particularly drawn to your approach to bringing literature and philosophy into conversation, and I would be genuinely excited by the possibility of learning from your work at UC Davis.</p>
 
-  <section class="panel" id="questions" data-title="Questions">
-    <p class="eyebrow">07 / Questions I would love to discuss</p>
-    <div class="questions">
-      <div>
-        <h2>Open questions, not finished answers.</h2>
-        <div class="rule"></div>
-        <p class="side-note">I hope to develop a focused project while remaining open to the texts, languages, and methods that doctoral study may bring into view.</p>
-      </div>
-      <div class="question-list">
-        <div class="question-line">How might I develop a comparative project on Wilde and Woolf around desire and gendered subjectivity?</div>
-        <div class="question-line">What connections do you see between fin-de-siècle decadence and modernist accounts of a changing self?</div>
-        <div class="question-line">How might your work on modernist thought and aesthetic experience help me develop these questions while keeping desire and gender at the center?</div>
-      </div>
-    </div>
-  </section>
+  <div class="final-question-grid">
+    <article class="final-question-card">
+      <p class="label">01 / Theory &amp; close reading</p>
+      <h3>Literature, Philosophy, and Interpretation</h3>
+      <p class="final-question">How can philosophical ideas inform close reading without turning literary texts into illustrations of pre-existing theory?</p>
+      <p class="final-note">My interest in desire as a relation through which subjects understand themselves, others, and the world.</p>
+    </article>
 
-  <section class="panel closing" id="closing" data-title="Thank you">
-    <div class="closing-inner">
-      <p class="eyebrow">A conversation, not a finished proposal</p>
-      <h2>Thank you<br>for your time.</h2>
-      <p class="lede">I’m looking forward to learning how these questions might develop through comparative literature.</p>
-      <div class="rule"></div>
-      <p class="signoff">Ruochen Zhao <span style="color:var(--rust)">/</span> Ruby</p>
-      <div class="footer"><span>Why Ruby? · Research conversation</span><span>Desire · Gender · Modernism</span><a href="#home">Back to beginning ↑</a></div>
-    </div>
-  </section>
+    <article class="final-question-card final-question-card-alt">
+      <p class="label">02 / Research fit &amp; graduate study</p>
+      <h3>Developing My Research</h3>
+      <p class="final-question">As I prepare my Fall 2027 application, do you see a potential fit between my interests and your advising, and is there anything you would recommend I develop or emphasize in my application?</p>
+    </article>
+  </div>
+  <p class="final-signoff">An ongoing conversation about the questions I hope to pursue and the scholarship I hope to learn from.</p>
+</section>
+
+<section class="closing" id="closing">
+  <p class="eyebrow">A conversation, not a finished proposal</p>
+  <h2>Thank you<br>for your time.</h2>
+  <p class="lede">I look forward to exploring how these questions might develop through comparative literature.</p>
+  <div class="hero-line"></div>
+  <p class="lede">Ruochen Zhao <span class="accent">/ Ruby</span></p>
+  <footer class="footer"><span>Why Ruby? · Research conversation</span><span>Desire · Gender · Modernism</span><a href="#home">Back to beginning ↑</a></footer>
+</section>
 </main>
-<div class="slidecount" id="slidecount">01 / 09 · Opening</div>
-<div class="controls" aria-label="Presentation controls">
-  <button id="prev" aria-label="Previous section" title="Previous section (↑)">↑</button>
-  <button id="next" aria-label="Next section" title="Next section (↓)">↓</button>
-</div>
-<script>
-(function(){
-  const sections=[...document.querySelectorAll('.panel')];
-  const navLinks=[...document.querySelectorAll('.nav a')];
-  const progress=document.getElementById('progress');
-  const count=document.getElementById('slidecount');
-  let active=0;
-  function setActive(index){
-    active=Math.max(0,Math.min(sections.length-1,index));
-    const pct=((active+1)/sections.length)*100;
-    progress.style.width=pct+'%';
-    count.textContent=String(active+1).padStart(2,'0')+' / '+String(sections.length).padStart(2,'0')+' · '+sections[active].dataset.title;
-    navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+sections[active].id));
-  }
-  function go(index){sections[Math.max(0,Math.min(sections.length-1,index))].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
-  document.getElementById('prev').addEventListener('click',()=>go(active-1));
-  document.getElementById('next').addEventListener('click',()=>go(active+1));
-  document.addEventListener('keydown',e=>{
-    if(['ArrowDown','PageDown',' '].includes(e.key)){if(e.target.closest('a,button'))return;e.preventDefault();go(active+1)}
-    if(['ArrowUp','PageUp'].includes(e.key)){if(e.target.closest('a,button'))return;e.preventDefault();go(active-1)}
-    if(e.key==='Home')go(0); if(e.key==='End')go(sections.length-1);
-  });
-  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting && entry.intersectionRatio>.35)setActive(sections.indexOf(entry.target))}),{threshold:[.35,.6]});
-  sections.forEach(s=>observer.observe(s));
-  navLinks.forEach(a=>a.addEventListener('click',()=>{const id=a.getAttribute('href').slice(1);setActive(sections.findIndex(s=>s.id===id));}));
-  setActive(0);
-})();
-</script>
 </body>
 </html>
